@@ -15,6 +15,9 @@ totalWage=0
 dailyWage=0
 day=0
 hour=0
+
+declare -A dailyWageDictionary
+
 function getWorkingHours()
 {
 	case $randomTime in
@@ -30,19 +33,28 @@ do
 	if [ $randomPresent -eq 1 ]
 	then
 		workingHour=$(getWorkingHours)
-		dailyWage=$(($workingHour * $WAGE_PER_HOUR))
 		echo "present wage: "$dailyWage
 	else
 		echo "Absent"
 		workingHour=0
-		dailyWage=$(($workingHour * $WAGE_PER_HOUR))
 	fi
-	day=$(($day+1))
+
+	dailyWage=$(($workingHour * $WAGE_PER_HOUR))
 	hour=$(($hour+$workingHour))
 	totalWage=$(($totalWage+$dailyWage))
 	dailyWageArray[$day]=$dailyWage
 	totalWageArray[$day]=$totalWage
+	dailyWageDictionary["Day_$day"]="$dailyWage	 $totalWage "
+	day=$(($day+1))
+
+done
+
+
+for (( i=0; i<$day; i++ ))
+do
+	echo "Day_$i	${dailyWageDictionary[Day_$i]}  "
 done
 
 echo ${dailyWageArray[@]}
 echo ${totalWageArray[@]}
+
