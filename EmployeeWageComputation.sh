@@ -29,7 +29,7 @@ do
 	randomPresent=$((RANDOM%2))
 	if [ $randomPresent -eq 1 ]
 	then
-		workingHour=$(getWorkingSalary)
+		workingHour=$(getWorkingHours)
 		dailyWage=$(($workingHour * $WAGE_PER_HOUR))
 		echo "present wage: "$dailyWage
 	else
