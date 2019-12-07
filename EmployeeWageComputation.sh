@@ -15,7 +15,7 @@ totalWage=0
 dailyWage=0
 day=0
 hour=0
-function getWorkingSalary()
+function getWorkingHours()
 {
 	case $randomTime in
 	1) workingHour=$FULL_DAY_WORKING_HOUR;;
