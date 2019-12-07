@@ -34,8 +34,15 @@ do
 		echo "present wage: "$dailyWage
 	else
 		echo "Absent"
+		workingHour=0
+		dailyWage=$(($workingHour * $WAGE_PER_HOUR))
 	fi
 	day=$(($day+1))
 	hour=$(($hour+$workingHour))
+	totalWage=$(($totalWage+$dailyWage))
+	dailyWageArray[$day]=$dailyWage
+	totalWageArray[$day]=$totalWage
 done
 
+echo ${dailyWageArray[@]}
+echo ${totalWageArray[@]}
